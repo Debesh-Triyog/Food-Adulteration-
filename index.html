@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>खाना सुरक्षा — Nepal Food Safety Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Teko:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blood: #c0392b;
+    --saffron: #e67e22;
+    --gold: #f39c12;
+    --cream: #fdf6ec;
+    --dark: #1a0f00;
+    --charcoal: #2c1a0e;
+    --muted: #7a5c3e;
+    --leaf: #2d6a4f;
+    --leaf-light: #40916c;
+    --warn: #d62828;
+    --safe: #2d6a4f;
+    --white: #fffef9;
+    --shadow: rgba(26,15,0,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(26,15,0,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(230,126,34,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,254,249,0.65);
+    text-decoration: none;
+    font-size: .85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color .25s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 2.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(192,57,43,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(230,126,34,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, #1a0f00 0%, #2c1a0e 50%, #1a0800 100%);
+    z-index: 0;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(192,57,43,0.2);
+    border: 1px solid rgba(192,57,43,0.5);
+    color: #e74c3c;
+    font-size: .75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: .4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.8rem;
+    position: relative; z-index: 1;
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1.02;
+    max-width: 800px;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,254,249,0.65);
+    max-width: 520px;
+    margin-top: 1.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    margin-top: 2.5rem;
+    background: var(--saffron);
+    color: var(--dark);
+    font-weight: 600;
+    padding: .85rem 2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: .95rem;
+    letter-spacing: .5px;
+    transition: background .25s, transform .2s;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .hero-cta:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .4s ease both;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-size: .78rem;
+    color: rgba(255,254,249,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: .2rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem; left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: rgba(255,254,249,0.35);
+    font-size: .75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 1;
+    animation: fadeUp .7s .5s ease both;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,254,249,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: scrollSlide 1.8s ease infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: .72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--saffron);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: rgba(255,254,249,0.6);
+    max-width: 600px;
+    font-size: .95rem;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── DIVIDER ── */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(230,126,34,0.3), transparent);
+    margin: 0;
+  }
+
+  /* ── THREAT CARDS ── */
+  .threat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: rgba(230,126,34,0.1);
+    border: 1px solid rgba(230,126,34,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .threat-card {
+    background: #1e1208;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background .3s;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .threat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--saffron);
+    transition: height .4s ease;
+  }
+
+  .threat-card:hover { background: #251608; }
+  .threat-card:hover::before { height: 100%; }
+
+  .threat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .threat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: .8rem;
+    color: var(--cream);
+  }
+
+  .threat-card p {
+    font-size: .88rem;
+    color: rgba(255,254,249,0.55);
+    line-height: 1.6;
+  }
+
+  .threat-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: .7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: .25rem .7rem;
+    border-radius: 2px;
+  }
+
+  .tag-red { background: rgba(192,57,43,0.2); color: #e74c3c; border: 1px solid rgba(192,57,43,0.3); }
+  .tag-orange { background: rgba(230,126,34,0.15); color: var(--saffron); border: 1px solid rgba(230,126,34,0.3); }
+  .tag-green { background: rgba(45,106,79,0.2); color: #52b788; border: 1px solid rgba(45,106,79,0.3); }
+
+  /* ── DETECTIVE GUIDE ── */
+  .detect-section { background: #150a00; }
+
+  .detect-outer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+  }
+
+  .detect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .detect-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 2rem;
+    border: 1px solid rgba(255,254,249,0.05);
+    border-radius: 4px;
+    background: rgba(255,254,249,0.02);
+    transition: border-color .3s, transform .3s;
+  }
+
+  .detect-item:hover {
+    border-color: rgba(230,126,34,0.3);
+    transform: translateY(-3px);
+  }
+
+  .detect-num {
+    font-family: 'Teko', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: rgba(230,126,34,0.25);
+    flex-shrink: 0;
+    width: 60px;
+  }
+
+  .detect-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+    color: var(--cream);
+  }
+
+  .detect-item p {
+    font-size: .85rem;
+    color: rgba(255,254,249,0.5);
+    line-height: 1.65;
+  }
+
+  .detect-item .keyword {
+    color: var(--saffron);
+    font-weight: 600;
+  }
+
+  /* ── ADULTERATION TABLE ── */
+  .adulterant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: .88rem;
+  }
+
+  .adulterant-table th {
+    background: rgba(230,126,34,0.12);
+    color: var(--saffron);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: .72rem;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(230,126,34,0.2);
+  }
+
+  .adulterant-table td {
+    padding: .9rem 1.5rem;
+    border-bottom: 1px solid rgba(255,254,249,0.04);
+    color: rgba(255,254,249,0.7);
+    vertical-align: top;
+  }
+
+  .adulterant-table tr:hover td { background: rgba(255,254,249,0.02); }
+
+  .risk-badge {
+    display: inline-block;
+    padding: .2rem .6rem;
+    border-radius: 2px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .risk-high { background: rgba(192,57,43,0.2); color: #e74c3c; }
+  .risk-med { background: rgba(230,126,34,0.15); color: var(--saffron); }
+  .risk-low { background: rgba(243,156,18,0.12); color: var(--gold); }
+
+  /* ── TIPS SECTION ── */
+  .tips-section {
+    background: linear-gradient(135deg, #0f0700 0%, #1a0f00 50%, #0a1a0f 100%);
+  }
+
+  .tips-outer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2.5rem;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .tip-card {
+    border-radius: 6px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s;
+  }
+
+  .tip-card:hover { transform: translateY(-5px); }
+
+  .tip-card.green-tip {
+    background: rgba(45,106,79,0.12);
+    border: 1px solid rgba(45,106,79,0.25);
+  }
+
+  .tip-card.red-tip {
+    background: rgba(192,57,43,0.08);
+    border: 1px solid rgba(192,57,43,0.2);
+  }
+
+  .tip-card.gold-tip {
+    background: rgba(243,156,18,0.07);
+    border: 1px solid rgba(243,156,18,0.2);
+  }
+
+  .tip-card .tip-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .tip-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: .7rem;
+  }
+
+  .tip-card p {
+    font-size: .84rem;
+    color: rgba(255,254,249,0.55);
+    line-height: 1.65;
+  }
+
+  .tip-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: .6rem;
+  }
+
+  .tip-card ul li {
+    font-size: .83rem;
+    color: rgba(255,254,249,0.55);
+    padding: .25rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .tip-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--saffron);
+    font-size: .8rem;
+  }
+
+  /* ── RESOURCES ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .resource-card {
+    background: #1e1208;
+    border: 1px solid rgba(255,254,249,0.07);
+    border-radius: 6px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .3s, transform .3s;
+    display: block;
+  }
+
+  .resource-card:hover {
+    border-color: rgba(230,126,34,0.4);
+    transform: translateY(-4px);
+  }
+
+  .resource-card .res-type {
+    font-size: .7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .8rem;
+  }
+
+  .resource-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    margin-bottom: .6rem;
+    color: var(--cream);
+  }
+
+  .resource-card p {
+    font-size: .82rem;
+    color: rgba(255,254,249,0.45);
+    line-height: 1.55;
+  }
+
+  .resource-card .res-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: 1.2rem;
+    font-size: .8rem;
+    color: var(--saffron);
+    letter-spacing: .5px;
+  }
+
+  /* ── WARNING BANNER ── */
+  .warning-banner {
+    background: linear-gradient(135deg, rgba(192,57,43,0.15), rgba(214,40,40,0.08));
+    border: 1px solid rgba(192,57,43,0.35);
+    border-left: 4px solid var(--blood);
+    border-radius: 4px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .warning-banner .warn-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: .1rem; }
+
+  .warning-banner strong { color: #e74c3c; display: block; margin-bottom: .3rem; }
+
+  .warning-banner p { font-size: .88rem; color: rgba(255,254,249,0.6); }
+
+  /* ── DATA HIGHLIGHT ── */
+  .data-strip {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 4px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+  }
+
+  .data-strip .big-num {
+    font-family: 'Teko', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: #e74c3c;
+  }
+
+  .data-strip .big-label {
+    font-size: .85rem;
+    color: rgba(255,254,249,0.5);
+    max-width: 200px;
+    line-height: 1.45;
+  }
+
+  .data-strip .divider-v {
+    width: 1px;
+    height: 60px;
+    background: rgba(192,57,43,0.3);
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,254,249,0.02);
+    border: 1px solid rgba(255,254,249,0.05);
+    border-radius: 4px;
+    transition: border-color .25s;
+  }
+
+  .check-item:hover { border-color: rgba(45,106,79,0.3); }
+
+  .check-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(45,106,79,0.2);
+    border: 1px solid rgba(45,106,79,0.4);
+    color: #52b788;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+
+  .check-item p {
+    font-size: .85rem;
+    color: rgba(255,254,249,0.6);
+    line-height: 1.55;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(230,126,34,0.15);
+    padding: 3rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 1rem;
+    background: #120800;
+  }
+
+  .footer-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  footer p {
+    font-size: .78rem;
+    color: rgba(255,254,249,0.3);
+    text-align: center;
+  }
+
+  footer a { color: var(--saffron); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollSlide {
+    0%   { left: -100%; }
+    50%  { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger siblings */
+  .reveal:nth-child(2) { transition-delay: .1s; }
+  .reveal:nth-child(3) { transition-delay: .2s; }
+  .reveal:nth-child(4) { transition-delay: .3s; }
+  .reveal:nth-child(5) { transition-delay: .4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.2rem 4rem; }
+    section, .detect-outer, .tips-outer { padding: 4rem 1.2rem; }
+    .detect-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .checklist { grid-template-columns: 1fr; }
+    .data-strip { padding: 1.8rem; gap: 2rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: rgba(230,126,34,0.4); border-radius: 3px; }
+
+  /* ── GIMMICK PILLS ── */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    margin-top: 1.2rem;
+  }
+
+  .pill {
+    font-size: .78rem;
+    padding: .35rem .9rem;
+    border-radius: 20px;
+    letter-spacing: .5px;
+  }
+
+  .pill-bad { background: rgba(214,40,40,0.15); color: #e74c3c; border: 1px solid rgba(214,40,40,0.25); }
+  .pill-good { background: rgba(82,183,136,0.12); color: #52b788; border: 1px solid rgba(82,183,136,0.2); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">🇳🇵 Food Watch Nepal</span>
+  <ul class="nav-links">
+    <li><a href="#threats">Threats</a></li>
+    <li><a href="#detect">Detect</a></li>
+    <li><a href="#dairy">Dairy</a></li>
+    <li><a href="#tips">Tips</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <span class="hero-badge">⚠ Nepal Food Safety Alert 2024–25</span>
+  <h1>Your Food is <em>Lying</em><br>to You.</h1>
+  <p class="hero-sub">A complete guide to marketing deception, chemical adulteration, and how to protect your family in Nepal's food landscape.</p>
+  <a href="#threats" class="hero-cta">Uncover the Truth ↓</a>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">3,133</div>
+      <div class="stat-label">Milk samples tested<br>2022–23 (DFTQC)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1.1M</div>
+      <div class="stat-label">Metric tons dairy<br>produced yearly</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Chemical adulterants<br>found in milk</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- THREATS SECTION -->
+<section id="threats">
+  <div class="section-label">Part 1</div>
+  <h2 class="section-title reveal">The Dual Threat to<br>Nepal's Food Safety</h2>
+  <p class="section-desc reveal">Two invisible forces shape what ends up on your plate: sophisticated psychological marketing and rampant chemical adulteration.</p>
+
+  <div class="threat-grid">
+    <div class="threat-card reveal">
+      <span class="threat-icon">🎨</span>
+      <h3>Green Packaging Illusion</h3>
+      <p>Multinationals deliberately use green packaging, forest imagery, and nature motifs to make ultra-processed products appear wholesome and natural — even when they contain palm oil, artificial colors, and zero real ingredients.</p>
+      <span class="threat-tag tag-red">Psychological Trick</span>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">👦</span>
+      <h3>Child-Targeted Ads</h3>
+      <p>School uniforms and children in ads manipulate parents into treating harmful junk food as a daily staple. Height-growth claims exploit parents' insecurities to sell nutrient-deficient chocolate spreads and instant noodles.</p>
+      <span class="threat-tag tag-red">Emotional Manipulation</span>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">📝</span>
+      <h3>"CREME" Spelling Loophole</h3>
+      <p>Brands intentionally misspell "Cream" as <strong>"CREME"</strong> because Nepali law forbids calling a product "cream" unless it's dairy-derived. "Creme" products are legally permitted to use cheap palm oil and vegetable fats as substitutes.</p>
+      <span class="threat-tag tag-orange">Legal Loophole</span>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">🧈</span>
+      <h3">"Flavor" = Zero Real Food</h3>
+      <p>Products labeled <strong>"Butter Lovers Flavor"</strong> or <strong>"Hazelnut Flavor Only"</strong> contain no actual butter or hazelnuts. The word "Flavor" is a legal signal that only artificial chemicals and vegetable fats are present.</p>
+      <span class="threat-tag tag-orange">Label Deception</span>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">💧</span>
+      <h3>The ORS Scam</h3>
+      <p>Brands sell sugar water branded as <strong>"ORSL"</strong> or <strong>"Fruit ORS"</strong> — products that are NOT life-saving ORS. Genuine ORS must explicitly display <strong>"WHO Formula"</strong> on the front. Fake ORS can be dangerous for dehydrated children.</p>
+      <span class="threat-tag tag-red">Life-Threatening</span>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">⭐</span>
+      <h3>Celebrity Endorsement Trap</h3>
+      <p>Athletes and celebrities endorse pan masala, soda, and junk food — products they almost certainly never consume. Fans trust these figures and assume the products are safe, healthy, or aspirational.</p>
+      <span class="threat-tag tag-orange">Trust Exploitation</span>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- DETECT SECTION -->
+<div class="detect-section" id="detect">
+  <div class="detect-outer">
+    <div class="section-label">Part 2</div>
+    <h2 class="section-title reveal">How to Spot a Food Lie<br>in 30 Seconds</h2>
+    <p class="section-desc reveal">Use these four quick tests every time you pick up a packaged product at any Nepali store.</p>
+
+    <div class="detect-grid">
+      <div class="detect-item reveal">
+        <div class="detect-num">01</div>
+        <div>
+          <h4>The WHO Formula Test</h4>
+          <p>For any ORS product: look for <span class="keyword">"WHO Formula"</span> clearly printed on the front. If it only says "ORSL," "Electrolyte Drink," or "Fruit ORS" — it is sugar water, not a medical-grade rehydration solution.</p>
+        </div>
+      </div>
+      <div class="detect-item reveal">
+        <div class="detect-num">02</div>
+        <div>
+          <h4>The "Flavor" Word Check</h4>
+          <p>Flip the pack. If you see <span class="keyword">"Flavor Only"</span> anywhere — the product has zero real ingredient. "Hazelnut Flavor Only" = no hazelnuts. "Butter Flavor" = no dairy. These are artificial chemicals mimicking taste.</p>
+        </div>
+      </div>
+      <div class="detect-item reveal">
+        <div class="detect-num">03</div>
+        <div>
+          <h4>Scrutinize the Spelling</h4>
+          <p>Notice whether it says <span class="keyword">"Creme"</span> vs "Cream". Creme = vegetable fat (often palm oil). Cream = dairy. Biscuit fillings, chocolate spreads, and wafers using "Choco-Creme" contain no milk-based cream.</p>
+        </div>
+      </div>
+      <div class="detect-item reveal">
+        <div class="detect-num">04</div>
+        <div>
+          <h4>Ignore the Color & Claims</h4>
+          <p>Green packaging, "fiber of 3 rotis" comparisons, or "natural" stamps are not regulated claims in Nepal. A product can be 80% refined sugar in green packaging. <span class="keyword">Read the ingredients</span>, not the front panel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- DAIRY ADULTERATION -->
+<section id="dairy">
+  <div class="section-label">Part 3</div>
+  <h2 class="section-title reveal">Nepal's Dairy Crisis</h2>
+  <p class="section-desc reveal">Since 1953, Nepal's dairy industry has grown — but "broken" compliance means harmful chemicals are routinely added to milk to boost volume and shelf life.</p>
+
+  <div class="warning-banner reveal">
+    <div class="warn-icon">☣️</div>
+    <div>
+      <strong>DFTQC & National Food Lab Findings (2022–23)</strong>
+      <p>Out of 3,133 milk samples tested by the Department of Food Technology and Quality Control, a significant portion contained dangerous microorganisms or failed national safety standards. Chemical adulterants were found across multiple districts.</p>
+    </div>
+  </div>
+
+  <div class="data-strip reveal">
+    <div>
+      <div class="big-num">3,133</div>
+      <div class="big-label">Milk & dairy samples officially tested in 2022–23</div>
+    </div>
+    <div class="divider-v"></div>
+    <div>
+      <div class="big-num">6+</div>
+      <div class="big-label">Distinct chemical adulterants detected in Nepali milk</div>
+    </div>
+    <div class="divider-v"></div>
+    <div>
+      <div class="big-num">1953</div>
+      <div class="big-label">Year Nepal's formal dairy industry began — decades of unchecked growth</div>
+    </div>
+  </div>
+
+  <h3 class="reveal" style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:1.5rem; color:var(--cream);">Known Adulterants in Nepali Milk</h3>
+
+  <table class="adulterant-table reveal">
+    <thead>
+      <tr>
+        <th>Adulterant</th>
+        <th>Purpose Used For</th>
+        <th>Health Risk</th>
+        <th>Risk Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Sodium Hydroxide (Caustic Soda)</strong></td>
+        <td>Neutralizes sour smell; extends shelf life</td>
+        <td>Severe chemical burns to GI tract; organ damage with chronic exposure</td>
+        <td><span class="risk-badge risk-high">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong>Hydrogen Peroxide</strong></td>
+        <td>Artificial whitening; kills bacteria temporarily</td>
+        <td>Oxidative damage, nausea, vomiting; destroys nutritional value</td>
+        <td><span class="risk-badge risk-high">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sodium Carbonate</strong></td>
+        <td>Preservative; prevents curdling</td>
+        <td>Alkaline overload, digestive disruption, kidney stress</td>
+        <td><span class="risk-badge risk-high">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Added Sugar</strong></td>
+        <td>Increases density and taste; fakes fat content</td>
+        <td>Metabolic disorders, diabetes risk, hidden caloric intake</td>
+        <td><span class="risk-badge risk-med">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>Milk Powder (Non-Declared)</strong></td>
+        <td>Bulks up diluted milk</td>
+        <td>Undisclosed allergens; quality and nutrition mismatch</td>
+        <td><span class="risk-badge risk-med">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sulfur Compounds</strong></td>
+        <td>Antibacterial; hides spoilage</td>
+        <td>Asthma triggers, allergic reactions, potential carcinogenicity</td>
+        <td><span class="risk-badge risk-high">High</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- TIPS SECTION -->
+<div class="tips-section" id="tips">
+  <div class="tips-outer">
+    <div class="section-label">Part 4</div>
+    <h2 class="section-title reveal">Practical Tips to Protect<br>Yourself in Nepal</h2>
+    <p class="section-desc reveal">Actionable steps specific to Nepal's market, regulation system, and food culture.</p>
+
+    <div class="tips-grid">
+      <div class="tip-card green-tip reveal">
+        <span class="tip-icon">🥛</span>
+        <h4>Buying Dairy Safely</h4>
+        <ul>
+          <li>Buy from DFTQC-registered dairy brands only</li>
+          <li>Prefer sealed Tetra Pak over loose milk from unknown sources</li>
+          <li>Boil all raw/loose milk before consuming</li>
+          <li>Smell and check consistency — adulterated milk may smell faintly of chemicals or be unusually watery</li>
+          <li>Check the "batch tested" or "DFTQC approved" stamp if available</li>
+        </ul>
+      </div>
+
+      <div class="tip-card red-tip reveal">
+        <span class="tip-icon">🏷️</span>
+        <h4>Reading Labels in Nepal</h4>
+        <ul>
+          <li>Ingredients are listed in descending order — if sugar is first, it's the main ingredient</li>
+          <li>Avoid products with more than 5 unrecognizable chemical names</li>
+          <li>Check for mandatory DFTQC registration number on packaged food</li>
+          <li>Look for the Nepali Standard (NS) mark for quality assurance</li>
+          <li>Imported products must display Nepali language labeling — if absent, it may be uncertified</li>
+        </ul>
+      </div>
+
+      <div class="tip-card gold-tip reveal">
+        <span class="tip-icon">🏪</span>
+        <h4>Shopping Smart Locally</h4>
+        <ul>
+          <li>Buy fresh vegetables from local bazaars (Kalimati, Ason) and wash thoroughly</li>
+          <li>Avoid packaged snacks with no expiry date or unclear production info</li>
+          <li>Ask vendors for freshness details on loose milk, ghee, and curd</li>
+          <li>Report suspicious products to your local municipality or DFTQC regional office</li>
+        </ul>
+      </div>
+
+      <div class="tip-card green-tip reveal">
+        <span class="tip-icon">🍭</span>
+        <h4>Protecting Children</h4>
+        <ul>
+          <li>Limit noodles, chocolate spreads, and biscuits marketed at children</li>
+          <li>Explain to kids that ads lie — celebrities don't eat what they advertise</li>
+          <li>Replace flavored milk drinks with real boiled milk + jaggery</li>
+          <li>Pack home lunches instead of relying on school canteen processed food</li>
+        </ul>
+      </div>
+
+      <div class="tip-card red-tip reveal">
+        <span class="tip-icon">⚕️</span>
+        <h4>Medical Emergencies</h4>
+        <ul>
+          <li>For dehydration: use only <strong>WHO Formula ORS</strong> — verify the text on the sachet</li>
+          <li>If a child shows unusual reactions after food, contact a doctor and retain the packaging</li>
+          <li>Food poisoning hotline (Nepal): call your nearest health post or 1115 (ambulance)</li>
+          <li>Report food poisoning incidents to DFTQC for investigation</li>
+        </ul>
+      </div>
+
+      <div class="tip-card gold-tip reveal">
+        <span class="tip-icon">📱</span>
+        <h4>Stay Updated</h4>
+        <ul>
+          <li>Follow DFTQC's official action report releases (published annually)</li>
+          <li>Check Nepal Food Safety Network social channels for real-time alerts</li>
+          <li>Subscribe to Nepali consumer rights groups for recall notifications</li>
+          <li>Use the DFTQC mobile complaint portal to report violations</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- QUICK CHECKLIST -->
+    <h3 class="reveal" style="font-family:'Playfair Display',serif; font-size:1.5rem; margin-top:4rem; margin-bottom:.5rem;">Before You Buy: Quick Checklist</h3>
+    <p class="reveal" style="color:rgba(255,254,249,0.5); font-size:.88rem; margin-bottom:1rem;">Run through this every time you pick up a packaged product.</p>
+
+    <div class="checklist">
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Does it have a valid expiry date and production batch number?</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Is the DFTQC registration or NS mark visible on the package?</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Does the packaging say "Creme" instead of "Cream"? (Palm oil likely)</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Does any "Flavor" label exist? If so, the real ingredient is absent.</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Are the first 3 ingredients recognizable whole foods, not chemicals?</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>For ORS: does it explicitly say "WHO Formula" on the front?</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Is the product registered with Nepal's food authority (not just imported freely)?</p>
+      </div>
+      <div class="check-item reveal">
+        <div class="check-icon">✓</div>
+        <p>Does the "health claim" on the front have zero scientific basis or comparison?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- RESOURCES SECTION -->
+<section id="resources">
+  <div class="section-label">Part 5</div>
+  <h2 class="section-title reveal">Official Nepal Resources</h2>
+  <p class="section-desc reveal">These government bodies and portals are your first line of defense. Bookmark them.</p>
+
+  <div class="resources-grid">
+    <a class="resource-card reveal" href="https://dftqc.gov.np" target="_blank" rel="noopener">
+      <div class="res-type">🏛 Government Body</div>
+      <h4>DFTQC — Department of Food Technology & Quality Control</h4>
+      <p>Nepal's primary food safety authority. Publishes annual action reports listing non-compliant dairy brands, food products, and retailers. Reports chemical adulteration findings.</p>
+      <span class="res-link">dftqc.gov.np ↗</span>
+    </a>
+
+    <a class="resource-card reveal" href="https://nffl.gov.np" target="_blank" rel="noopener">
+      <div class="res-type">🔬 Testing Lab</div>
+      <h4>National Food & Feed Reference Laboratory (NFFRL)</h4>
+      <p>The official laboratory that conducts rigorous testing of food samples. Publishes scientific findings on adulteration including milk, dairy, and spices across Nepal.</p>
+      <span class="res-link">nffl.gov.np ↗</span>
+    </a>
+
+    <a class="resource-card reveal" href="https://moald.gov.np" target="_blank" rel="noopener">
+      <div class="res-type">🌾 Ministry</div>
+      <h4>Ministry of Agriculture & Livestock Development</h4>
+      <p>Oversees dairy production regulations, livestock standards, and coordinates with DFTQC on enforcement. Key source for dairy industry policy updates and compliance directives.</p>
+      <span class="res-link">moald.gov.np ↗</span>
+    </a>
+
+    <a class="resource-card reveal" href="https://www.ccl.gov.np" target="_blank" rel="noopener">
+      <div class="res-type">⚖ Consumer Rights</div>
+      <h4>Department of Commerce, Supplies & Consumer Protection</h4>
+      <p>File complaints about misleading food labels, deceptive packaging, and false health claims under Nepal's Consumer Protection Act 2075. Your legal right as a consumer.</p>
+      <span class="res-link">ccl.gov.np ↗</span>
+    </a>
+
+    <a class="resource-card reveal" href="https://dofd.gov.np" target="_blank" rel="noopener">
+      <div class="res-type">🥩 Food Inspection</div>
+      <h4>Department of Food & Drug Administration</h4>
+      <p>Regulates food drugs, nutritional supplements, and health products in Nepal. Critical for identifying counterfeit ORS and unregistered health food products in the market.</p>
+      <span class="res-link">dofd.gov.np ↗</span>
+    </a>
+
+    <a class="resource-card reveal" href="https://www.who.int/nepal" target="_blank" rel="noopener">
+      <div class="res-type">🌐 WHO Nepal</div>
+      <h4>World Health Organization — Nepal Office</h4>
+      <p>Official source for WHO-Formula ORS specifications, food safety guidelines, and nutrition standards applicable in Nepal. Use to verify whether ORS products are compliant.</p>
+      <span class="res-link">who.int/nepal ↗</span>
+    </a>
+  </div>
+
+  <!-- Gimmick Spotting Summary -->
+  <div style="margin-top:4rem;" class="reveal">
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:1.2rem; color:var(--cream);">Common Marketing Gimmicks: At a Glance</h3>
+    <div class="pill-row">
+      <span class="pill pill-bad">🚫 "CREME" = No Dairy</span>
+      <span class="pill pill-bad">🚫 "Flavor Only" = No Real Food</span>
+      <span class="pill pill-bad">🚫 "ORSL" ≠ WHO ORS</span>
+      <span class="pill pill-bad">🚫 Green Pack ≠ Healthy</span>
+      <span class="pill pill-bad">🚫 "Fiber of 3 Rotis" = Misleading</span>
+      <span class="pill pill-bad">🚫 Celebrity Endorsement ≠ Safe</span>
+      <span class="pill pill-good">✅ WHO Formula = Real ORS</span>
+      <span class="pill pill-good">✅ "Cream" = Dairy-Derived</span>
+      <span class="pill pill-good">✅ DFTQC Mark = Tested</span>
+      <span class="pill pill-good">✅ NS Mark = Nepal Standard</span>
+      <span class="pill pill-good">✅ Boil Raw Milk Always</span>
+      <span class="pill pill-good">✅ Read Ingredients First</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">🇳🇵 Food Watch Nepal</span>
+  <p>Information sourced from DFTQC reports, WHO guidelines & documented consumer research.<br>For complaints: <a href="https://dftqc.gov.np" target="_blank">dftqc.gov.np</a> &nbsp;|&nbsp; Consumer helpline: <a href="tel:1115">1115</a></p>
+  <p style="font-size:.73rem; color:rgba(255,254,249,0.2);">Educational purpose only · Verify all data with official authorities</p>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section, [id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 100;
+      if (window.scrollY >= top) current = section.id || '';
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current
+        ? 'var(--gold)'
+        : 'rgba(255,254,249,0.65)';
+    });
+  });
+
+  // Counter animation for hero stats
+  function animateCount(el, target, suffix = '') {
+    let start = 0;
+    const duration = 1800;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-num');
+        if (nums[0]) animateCount(nums[0], 3133, '');
+        if (nums[1]) {
+          setTimeout(() => { nums[1].textContent = '1.1M'; }, 600);
+        }
+        if (nums[2]) {
+          setTimeout(() => { nums[2].textContent = '6+'; }, 1000);
+        }
+        heroObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) heroObserver.observe(heroStats);
+</script>
+</body>
+</html>
